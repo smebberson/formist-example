@@ -1,0 +1,23 @@
+{
+  "name": "formist-example",
+  "version": "0.0.1",
+  "description": "An example of using formist to render a HTML5 form.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smebberson/formist-example.git"
+  },
+  "author": "Scott Mebberson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smebberson/formist-example/issues"
+  },
+  "homepage": "https://github.com/smebberson/formist-example",
+  "dependencies": {
+    "express": "~4.1.1",
+    "express3-handlebars": "~0.5.0"
+  }
+}
