@@ -1,10 +1,6 @@
 var express = require('express'),
 	hbs = require('express3-handlebars'),
-	fieldset = require('./forms/fieldset'),
-	bootstrap = require('./forms/bootstrap'),
-	bootstrapInline = require('./forms/bootstrap-inline'),
-	everything = require('./forms/everything'),
-	withoutFieldset = require('./forms/withoutFieldset'),
+	forms = require('./lib/load')('./forms'),
 	port = 3950,
 	app = express();
 
@@ -16,7 +12,7 @@ app.get('/', function (req, res, next) {
 });
 
 app.get('/fieldset', function (req, res, next) {
-	res.send(fieldset.render());
+	res.send(forms.fieldset.render());
 });
 
 app.get('/bootstrap', function (req, res, next) {
@@ -27,16 +23,22 @@ app.get('/bootstrap', function (req, res, next) {
 
 app.get('/bootstrap-inline', function (req, res, next) {
 	res.render('standard', {
-		form: bootstrapInline.render()
+		form: forms['bootstrap-inline'].render()
+	});
+});
+
+app.get('/bootstrap-horizontal', function (req, res, next) {
+	res.render('standard', {
+		form: forms['bootstrap-horizontal'].render()
 	});
 });
 
 app.get('/everything', function (req, res, next) {
-	res.send(everything.render());
+	res.send(forms.everything.render());
 });
 
 app.get('/without-fieldset', function (req, res, next) {
-	res.send(withoutFieldset.render());
+	res.send(forms.withoutFieldset.render());
 });
 
 var server = app.listen(port, function () {
