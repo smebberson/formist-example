@@ -1,48 +1,26 @@
 var express = require('express'),
 	hbs = require('express3-handlebars'),
-	forms = require('./lib/load')('./forms'),
+	routes = require('./lib/load')('./routes'),
 	port = 3950,
 	app = express();
 
+// setup the view engine
 app.engine('html', hbs({extname: '.html'}));
 app.set('view engine', 'html');
 
-app.get('/', function (req, res, next) {
-	res.send('formist examples');
-});
+// setup the routes
+app.get('/', routes['home']);
+app.get('/fieldsets', routes['fieldsets']);
+app.get('/bootstrap', routes['bootstrap']);
+app.get('/bootstrap-inline', routes['bootstrap-inline']);
+app.get('/bootstrap-horizontal', routes['bootstrap-horizontal']);
+app.get('/everything', routes['everything']);
+app.get('/without-fieldset', routes['without-fieldset']);
 
-app.get('/fieldset', function (req, res, next) {
-	res.send(forms.fieldset.render());
-});
+// serve static files
+app.use(express.static('./public'));
 
-app.get('/bootstrap', function (req, res, next) {
-	res.render('standard', {
-		form: bootstrap.render()
-	});
-});
-
-app.get('/bootstrap-inline', function (req, res, next) {
-	res.render('standard', {
-		form: forms['bootstrap-inline'].render()
-	});
-});
-
-app.get('/bootstrap-horizontal', function (req, res, next) {
-	res.render('standard', {
-		form: forms['bootstrap-horizontal'].render()
-	});
-});
-
-app.get('/everything', function (req, res, next) {
-	res.send(forms.everything.render());
-});
-
-app.get('/without-fieldset', function (req, res, next) {
-	res.send(forms.withoutFieldset.render());
-});
-
+// fire up the server
 var server = app.listen(port, function () {
-
 	console.log('formist-example is listening on %s', server.address().port);
-
 });

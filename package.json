@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/smebberson/formist-example",
   "dependencies": {
-    "express": "~4.1.1",
-    "express3-handlebars": "~0.5.0"
+    "express": "4.1.1",
+    "express3-handlebars": "0.5.0"
   }
 }

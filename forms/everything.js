@@ -61,6 +61,10 @@ fieldset.add(new formist.Field('input', {
 	}
 }));
 
+/**
+ * Checkboxes and radio buttons
+ */
+
 fieldset = form.add(new formist.Fieldset({
 	legend: 'Checkboxes and radio buttons',
 	attributes: {
@@ -74,6 +78,48 @@ fieldset.add(new formist.Field('input', {
 	attributes: {
 	}
 }));
+
+fieldset.add(new formist.Fieldgroup({
+	label: 'Mutliple checkboxes',
+}, [
+	new formist.Field('input', {
+		label: 'Checkbox option 1',
+		type: 'checkbox'
+	}),
+	new formist.Field('input', {
+		label: 'Checkbox option 2',
+		type: 'checkbox'
+	}),
+	new formist.Field('input', {
+		label: 'Checkbox option 3',
+		type: 'checkbox'
+	})
+]));
+
+/**
+ * Multiple fields
+ */
+
+fieldset = form.add(new formist.Fieldset({
+	legend: 'Multiple fields'
+}));
+
+fieldset.add(new formist.Fieldgroup({
+	label: 'Mutliple text inputs',
+}, [
+	new formist.Field('input', {
+		type: 'text',
+		attributes: {
+			placeholder: 'hours'
+		}
+	}),
+	new formist.Field('input', {
+		type: 'text',
+		attributes: {
+			placeholder: 'minutes'
+		}
+	})
+]));
 
 form.add(new formist.Field('button', {
 	value: 'Save'

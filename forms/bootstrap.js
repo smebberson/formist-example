@@ -7,8 +7,23 @@ form = new formist.Form({
 		role: 'form'
 	},
 	theme: {
-		field: function (content, field) {
-			return '<div class="form-group">' + content + '</div>';
+		field: function (label, content, field) {
+			return '<div class="form-group">' + label + content + '</div>';
+		},
+		fieldgroup: {
+			field: function (label, content, field) {
+
+				// if we're dealing with a radio or checkbox input tag, re-render the input inside the label
+				if (field.tag === 'input' && (field.options.type === 'radio' || field.options.type === 'checkbox') && field.options.label) {
+
+					return '<div class="' + field.options.type + '"><label>' + content + ' ' + field.options.label.label + '</label></div>';
+
+				}
+
+				// if we're dealing with an input that isn't radio or checkbox, just output the actual tag itself
+				return content;
+
+			}
 		}
 	}
 });
@@ -92,6 +107,32 @@ fieldset.add(new formist.Field('input', {
 		required: true
 	}
 }));
+
+fieldset = form.add(new formist.Fieldset({
+	legend: 'Contacting you'
+}));
+
+fieldset.add(new formist.Fieldgroup({
+	label: 'How frequently would you like to recieve account balance information?'
+}, [
+		new formist.Field('input', {
+			type: 'radio',
+			label: 'Daily',
+			attributes: {
+				name: 'frequency',
+				value: 'daily'
+			}
+		}),
+		new formist.Field('input', {
+			type: 'radio',
+			label: 'Weekly',
+			attributes: {
+				name: 'frequency',
+				value: 'weekly'
+			}
+		})
+	]
+));
 
 form.add(new formist.Field('button', {
 	value: 'Save',

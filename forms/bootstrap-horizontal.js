@@ -8,10 +8,10 @@ form = new formist.Form({
 		'class': 'form-horizontal'
 	},
 	theme: {
-		field: function (content, field) {
-			return '<div class="form-group">' + content + '</div>';
+		field: function (label, content, field) {
+			return '<div class="form-group">' + label + content + '</div>';
 		},
-		input: function (content, field) {
+		control: function (content, field) {
 			return '<div class="col-sm-10">' + content + '</div>';
 		}
 	}
@@ -133,7 +133,7 @@ form.add(new formist.Field('button', {
 		'class': 'btn btn-default'
 	},
 	theme: {
-		input: function (content, input) {
+		control: function (content, input) {
 			return '<div class="col-sm-offset-2 col-sm-10">' + content + '</div>';
 		}
 	}

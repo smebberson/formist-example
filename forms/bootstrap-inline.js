@@ -9,8 +9,8 @@ form = new formist.Form({
 		'class': 'form-inline'
 	},
 	theme: {
-		field: function (content, field) {
-			return '<div class="form-group">' + content + '</div>';
+		field: function (label, content, field) {
+			return '<div class="form-group">' + label + content + '</div>';
 		}
 	}
 });
